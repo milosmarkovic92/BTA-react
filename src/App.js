@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import StepsHolder from './components/StepsHolder';
+import RegistrationForm from './components/RegistrationForm';
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Navbar/NavbarItems/Home';
 import DiffCountries from './components/Navbar/NavbarItems/DiffCountries';
@@ -21,7 +21,7 @@ export default class App extends Component {
             <Route path="/accommodation" component={Accommodation} />
             <Route path="/enjoy_travel" component={EnjoyTravel} />
             <Route path="/feedbacks" component={Feedbacks} />
-            <Route path="/register" component={StepsHolder} />
+            <Route path="/register" component={RegistrationForm} />
           </Switch>
         </div>
       </BrowserRouter>
