@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/BTA-react/static/css/main.4c6a4d39.chunk.css",
+    "main.js": "/BTA-react/static/js/main.7b106f16.chunk.js",
+    "main.js.map": "/BTA-react/static/js/main.7b106f16.chunk.js.map",
+    "runtime~main.js": "/BTA-react/static/js/runtime~main.aeee02d2.js",
+    "runtime~main.js.map": "/BTA-react/static/js/runtime~main.aeee02d2.js.map",
+    "static/js/2.21825336.chunk.js": "/BTA-react/static/js/2.21825336.chunk.js",
+    "static/js/2.21825336.chunk.js.map": "/BTA-react/static/js/2.21825336.chunk.js.map",
+    "index.html": "/BTA-react/index.html",
+    "precache-manifest.e6a9a686060f9f43cbdd51e080dd1b01.js": "/BTA-react/precache-manifest.e6a9a686060f9f43cbdd51e080dd1b01.js",
+    "service-worker.js": "/BTA-react/service-worker.js",
+    "static/css/main.4c6a4d39.chunk.css.map": "/BTA-react/static/css/main.4c6a4d39.chunk.css.map"
+  }
+}
