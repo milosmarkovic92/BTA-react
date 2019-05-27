@@ -123,9 +123,8 @@ export default class RegistrationForm extends Component {
       errors: errors
     });
     return formIsValid;
-
-
   }
+  
   render() {
     return (
       <div id="main-registration-container">
