@@ -1,13 +1,28 @@
 nav {
-    background-color: #ff4d4d;
-    height: 44px;
+    background-color: #009688;
+    height: 60px;
 }
 
 nav a {
-    color: #f0f8ff;
+    color: #b2dfdb;
     text-decoration: none;
+    font-size: 1rem;
 }
 
-nav a:hover {
+nav a:hover, .navbar-brand {
     color: #f0f8ff;
+}
+
+.active {
+    text-decoration: underline;
+    color: #f0f8ff;
+}
+
+.logo {
+    font-size: 1.4rem;
+    color: #f0f8ff;
+}
+
+.logo:hover {
+    text-decoration: none;
 }

@@ -6,7 +6,7 @@ export default function Input(props) {
   return (
     <div className="form-group">
       {/* <label htmlFor={name}>{label}</label> */}
-      <input type={type} name={name} onChange={onChange} placeholder={label} value={defaultValues}/>
+      <input className="input" type={type} name={name} onChange={onChange} placeholder={label} value={defaultValues}/>
     </div>
   )
 }
