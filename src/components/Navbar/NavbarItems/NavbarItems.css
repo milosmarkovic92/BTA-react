@@ -1,0 +1,65 @@
+.TopicContainer {
+    margin: 200px auto;
+}
+
+.TopicItem {
+    display: inline-block;
+    height: 300px;
+    width: 300px;
+    margin: 0 20px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+}
+
+.TopicItem:hover {
+    transform: scale(1.1);
+    transform: rotateY(180deg);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+}
+
+.TopicItemInner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+  
+  .TopicItem:hover .TopicItemInner {
+    transform: rotateY(180deg)  ;
+    -webkit-transform: rotateY(180deg)  ;
+    -moz-transform: rotateY(180deg)  ;
+    -ms-transform: rotateY(180deg)  ;
+    -o-transform: rotateY(180deg)  ;
+}
+  
+  .TopicItemFront, .TopicItemBack {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+  }
+  
+  .TopicItemFront {
+    background-color: #ff8080;
+    color: black;
+  }
+  
+  .TopicItemBack {
+    background-color: #2980b9;
+    color: white;
+    transform: rotateY(180deg)  ;
+    -webkit-transform: rotateY(180deg)  ;
+    -moz-transform: rotateY(180deg)  ;
+    -ms-transform: rotateY(180deg)  ;
+    -o-transform: rotateY(180deg)  ;
+}
