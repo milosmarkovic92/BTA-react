@@ -131,7 +131,7 @@ export default class RegistrationForm extends Component {
         <div id="register">
           <h3>Sign Up Here</h3>
           <form method="post" name="userRegistrationForm" onSubmit={this.submitUserRegistrationForm} >
-            <Input 
+            <Input  
                 label="First Name*" 
                 name="firstName" 
                 onChange={this.handleChange} 
@@ -141,7 +141,7 @@ export default class RegistrationForm extends Component {
               <p className="errorMsg">{this.state.errors.firstName}</p> :
               null
             }
-            <Input 
+            <Input  
                 label="Last Name*" 
                 name="lastName" 
                 onChange={this.handleChange} 
@@ -161,7 +161,7 @@ export default class RegistrationForm extends Component {
               <p className="errorMsg">{this.state.errors.email}</p> :
               null
             }
-            <Input 
+            <Input  
                 type="password" 
                 label="Password*" 
                 name="password" 
@@ -183,7 +183,7 @@ export default class RegistrationForm extends Component {
               <p className="errorMsg">{this.state.errors.passwordRepeat}</p> :
               null
             }
-            <Input 
+            <Input
                 label="Address 1*" 
                 name="addressOne" 
                 onChange={this.handleChange} 
@@ -200,7 +200,7 @@ export default class RegistrationForm extends Component {
                 value={this.state.fields.addressTwo}
             />
             <p className="errorMsg"></p>
-            <Input 
+            <Input  
                 label="Phone*" 
                 name="phone" 
                 onChange={this.handleChange} 
