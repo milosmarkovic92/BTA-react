@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import RegistrationForm from './components/RegistrationForm';
 import LoginForm from './components/LoginForm';
-import Navbar from './components/Navbar/Navbar';
+import NavbarMenu from './components/Navbar/NavbarMenu';
 import Home from './components/Navbar/NavbarItems/Home';
 import DiffCountries from './components/Navbar/NavbarItems/DiffCountries';
 import Accommodation from './components/Navbar/NavbarItems/Accommodation';
@@ -14,7 +14,7 @@ export default class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Navbar />
+        <NavbarMenu />
         <div className="App">
           <Switch>
             <Route exact path="/" component={Home} />
