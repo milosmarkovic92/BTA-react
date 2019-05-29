@@ -1,24 +1,34 @@
 import React, { Component } from 'react';
-import Select from '../../FormDetails/Select';
 
 export default class DiffCountries extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: []
+        }
+    }
+
+    componentDidMount() {
+        this.fetchData();
+    }
+
+    fetchData() {
+        fetch('https://jsonplaceholder.typicode.com/users')
+        .then(response => response.json())
+        .then(parsedJSON => console.log(parsedJSON))
+        .catch(error => console.log('error is: ', error))
+    }
+
     render() {
         return (
             <div className="container">
                 <div className="row">
-                    <div className="filter-container col-6">
-                        <Select 
-                            label="Country and/or"
-                            name="country"
-                        />
-                        <Select 
-                            label="State and/or"
-                            name="state"
-                        />
-                        <Select 
-                            label="City"
-                            name="city"
-                        />
+                    <div className="filter-container col-6 mt-5">
+                        {
+                            this.state.data.map((item, index) => {
+                                return <p key={index}>{item}</p>
+                            })
+                        }
                     </div>
                     <div className="filter-results col-6">
                         <p>
