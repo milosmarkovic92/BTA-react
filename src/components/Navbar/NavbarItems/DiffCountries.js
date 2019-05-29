@@ -4,7 +4,10 @@ export default class DiffCountries extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: []
+            selectedUserID: null,
+            isLoading: true,
+            contacts: [],
+            selectedName: ''
         }
     }
 
@@ -12,39 +15,61 @@ export default class DiffCountries extends Component {
         this.fetchData();
     }
 
-    fetchData() {
-        fetch('https://jsonplaceholder.typicode.com/users')
-        .then(response => response.json())
-        .then(parsedJSON => console.log(parsedJSON))
-        .catch(error => console.log('error is: ', error))
+    onChangeHandler = (event) => {
+            //za selektovani id fetchovati podatke, nakon toga setovati u state
+
+            fetch('https://jsonplaceholder.typicode.com/users/'+event.target.value)
+            .then(response => response.json())
+            .then(parsedJSON => {
+                this.setState(
+                    {trenutniUser: parsedJSON}
+            )})
+           
+            .catch(error => console.log('error is: ', error))
+
     }
 
+    fetchData() {
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(response => response.json())
+            .then(parsedJSON => parsedJSON.map(user => (
+                {
+                    id: `${user.id}`,
+                    name: `${user.name}`,
+                    username: `${user.username}`,
+                    email: `${user.email}`
+                }
+            )))
+            .then(contacts => this.setState({
+                contacts,
+                isLoading: false
+            }))
+            .catch(error => console.log('error is: ', error))
+    }
+
+    
+
     render() {
+        const {contacts} = this.state;
         return (
             <div className="container">
                 <div className="row">
                     <div className="filter-container col-6 mt-5">
-                        {
-                            this.state.data.map((item, index) => {
-                                return <p key={index}>{item}</p>
-                            })
-                        }
+                        <select name="" id="" onChange={this.onChangeHandler}>
+                            {
+                                contacts.map(contact => {
+                                    const { email, name, id } = contact;
+                                    return <option key={email} value={id}>{name}</option>
+                                })
+                            }
+                        </select>
                     </div>
                     <div className="filter-results col-6">
                         <p>
-                            {/* this is where filtered data render */}
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                            Aenean commodo ligula eget dolor. Aenean massa.
-                            Cum sociis natoque penatibus et magnis dis parturient montes,
-                            nascetur ridiculus mus. Donec quam felis, ultricies nec,
-                            pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
-                            Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
-                            In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
-                            Nullam dictum felis eu pede mollis pretium. Integer tincidunt.
-                            Cras dapibus. Vivamus elementum semper nisi.
-                            Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu,
-                            consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in,
-                            viverra quis, feugiat a, tellus. 
+                            {this.state.trenutniUser !== undefined ? 
+                                this.state.trenutniUser.name :
+                                'nema korisnika'
+                            }
                         </p>
                     </div>
                 </div>
