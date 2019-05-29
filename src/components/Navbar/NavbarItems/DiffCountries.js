@@ -68,7 +68,7 @@ export default class DiffCountries extends Component {
                         <p>
                             {this.state.trenutniUser !== undefined ? 
                                 this.state.trenutniUser.name :
-                                'nema korisnika'
+                                'nema korisnika '
                             }
                         </p>
                     </div>
