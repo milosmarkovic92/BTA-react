@@ -63,3 +63,9 @@
     -ms-transform: rotateY(180deg)  ;
     -o-transform: rotateY(180deg)  ;
 }
+
+.filters {
+  border: 3px solid teal;
+  background-color: #4db6ac;
+  height: 400px;
+}
