@@ -69,3 +69,13 @@
   background-color: #4db6ac;
   height: 400px;
 }
+
+.checkbox {
+  width: 30px;
+  display: inline-block;
+}
+
+.select {
+  display: block;
+  margin: 15px auto;
+}
