@@ -35,6 +35,8 @@ export default class RegistrationForm extends Component {
       fields["phone"] = "";
       fields["password"] = "";
       this.setState({ fields: fields });
+      localStorage.setItem('firstName', this.state.fields.firstName);
+      localStorage.setItem('lastName', this.state.fields.lastName);
       alert("Form submitted");
       console.log(this.state.fields);
     }

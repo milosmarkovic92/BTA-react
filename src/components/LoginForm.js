@@ -7,13 +7,12 @@ export default class LoginForm extends Component {
         super();
         this.state = {
             fields: {},
+            email: '',
             errors: {}
         }
-        this.handleChange = this.handleChange.bind(this);
-        this.submitUserLoginForm = this.submitUserLoginForm.bind(this);
     }
 
-    handleChange(e) {
+    handleChange = (e) => {
         let fields = this.state.fields;
         fields[e.target.name] = e.target.value;
         this.setState({
@@ -22,19 +21,20 @@ export default class LoginForm extends Component {
 
     }
 
-    submitUserLoginForm(e) {
+    submitUserLoginForm = (e) => {
         e.preventDefault();
         if (this.validateForm()) {
             let fields = {};
             fields["email"] = "";
             fields["password"] = "";
             this.setState({ fields: fields });
+            localStorage.setItem('email', this.state.fields.email);
             alert("Form submitted");
             console.log(this.state.fields);
         }
     }
 
-    validateForm() {
+    validateForm = () => {
 
         let fields = this.state.fields;
         let errors = {};
