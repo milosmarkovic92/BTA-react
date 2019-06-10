@@ -24,7 +24,8 @@ export default class App extends Component {
             <Route path="/accommodation" component={Accommodation} />
             <Route path="/enjoy_travel" component={EnjoyTravel} />
             <Route path="/feedbacks" component={Feedbacks} />
-
+            <Route exact path="/" component={RegistrationForm} />
+            <Route path="/sign_in" component={LoginForm} />
           </Switch>
         </div>
       </BrowserRouter>
