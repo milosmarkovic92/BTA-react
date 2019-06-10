@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Input from './FormDetails/Input';
-import {Redirect} from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 
 export default class LoginForm extends Component {
@@ -32,13 +32,13 @@ export default class LoginForm extends Component {
             fields["email"] = "";
             fields["password"] = "";
             this.setState({ fields: fields });
-            if(storedEmail === this.state.fields.email) {
+            if (storedEmail === this.state.fields.email) {
                 localStorage.setItem('email', this.state.fields.email);
                 this.setState({
-                  redirect: true
+                    redirect: true
                 })
-              }
-                alert("Welcome, " + storedName);
+            }
+            alert("Welcome, " + storedName);
             // console.log(this.state.fields);
         }
     }
@@ -107,6 +107,10 @@ export default class LoginForm extends Component {
                             null
                         }
                         <Button type="submit">Sign In</Button>
+                        <div className="mt-4">
+                            <p className="haveAcc">Don't have account yet? -</p>
+                            <Link to="/sign_up">Sign Up</Link>
+                        </div>
                         {
                             this.state.redirect ?
                                 <Redirect to="/home" /> :

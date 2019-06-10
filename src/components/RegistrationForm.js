@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Redirect} from 'react-router-dom';
+import {Redirect, Link} from 'react-router-dom';
 import Input from './FormDetails/Input';
 import Button from 'react-bootstrap/Button';
 import './Components.css';
@@ -236,6 +236,10 @@ export default class RegistrationForm extends Component {
               null
             }
             <Button type="submit">Sign Up</Button>
+            <div className="mt-4">
+              <p className="haveAcc">Already have account? -</p>
+              <Link to="/sign_in">Sign In</Link>
+            </div>
             {
               this.state.redirect ?
                 <Redirect to="/sign_in" /> :

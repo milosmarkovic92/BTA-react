@@ -19,3 +19,7 @@ p {
     margin: 0 auto;
     padding: 20px;
 }
+
+.haveAcc {
+    display: inline-block;
+}
