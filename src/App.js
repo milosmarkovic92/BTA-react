@@ -18,13 +18,13 @@ export default class App extends Component {
         <NavbarMenu />
         <div className="App">
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route path="/home" component={Home} />
             <Route path="/different_countries" component={DiffCountries} />
             {/* <Route path="/different_countries" component={DiffCountriesTwo} /> */}
             <Route path="/accommodation" component={Accommodation} />
             <Route path="/enjoy_travel" component={EnjoyTravel} />
             <Route path="/feedbacks" component={Feedbacks} />
-            <Route path="/sign_up" component={RegistrationForm} />
+            <Route exact path="/" component={RegistrationForm} />
             <Route path="/sign_in" component={LoginForm} />
           </Switch>
         </div>

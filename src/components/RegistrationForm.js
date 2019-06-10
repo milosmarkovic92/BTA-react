@@ -56,7 +56,7 @@ export default class RegistrationForm extends Component {
       //   })
       // }
       
-      console.log(this.state.fields);
+      // console.log(this.state.fields);
     }
 
   }

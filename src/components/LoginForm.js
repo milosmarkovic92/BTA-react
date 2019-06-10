@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Input from './FormDetails/Input';
+import {Redirect} from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 
 export default class LoginForm extends Component {
@@ -8,7 +9,8 @@ export default class LoginForm extends Component {
         this.state = {
             fields: {},
             email: '',
-            errors: {}
+            errors: {},
+            redirect: false
         }
     }
 
@@ -22,20 +24,27 @@ export default class LoginForm extends Component {
     }
 
     submitUserLoginForm = (e) => {
+        let storedEmail = localStorage.getItem('email');
+        let storedName = localStorage.getItem('firstName');
         e.preventDefault();
         if (this.validateForm()) {
             let fields = {};
             fields["email"] = "";
             fields["password"] = "";
             this.setState({ fields: fields });
-            localStorage.setItem('email', this.state.fields.email);
-            alert("Form submitted");
-            console.log(this.state.fields);
+            if(storedEmail === this.state.fields.email) {
+                localStorage.setItem('email', this.state.fields.email);
+                this.setState({
+                  redirect: true
+                })
+              }
+                alert("Welcome, " + storedName);
+            // console.log(this.state.fields);
         }
     }
 
     validateForm = () => {
-
+        let storedEmail = localStorage.getItem('email');
         let fields = this.state.fields;
         let errors = {};
         let formIsValid = true;
@@ -43,6 +52,11 @@ export default class LoginForm extends Component {
         if (!fields["email"]) {
             formIsValid = false;
             errors["email"] = "*Please enter your email.";
+        }
+
+        if (storedEmail !== this.state.fields.email) {
+            formIsValid = false;
+            errors["email"] = "*Email does not exist.";
         }
 
         if (typeof fields["email"] !== "undefined") {
@@ -71,28 +85,33 @@ export default class LoginForm extends Component {
                 <div id="login">
                     <h3>Sign In Here</h3>
                     <form method="post" name="userLoginForm" onSubmit={this.submitUserLoginForm} >
-                        <Input 
-                            label="Email*" 
-                            name="email" 
-                            onChange={this.handleChange} 
-                            value={this.state.fields.email} 
+                        <Input
+                            label="Email*"
+                            name="email"
+                            onChange={this.handleChange}
+                            value={this.state.fields.email}
                         />
                         {this.state.errors ?
                             <p className="errorMsg">{this.state.errors.email}</p> :
                             null
                         }
-                        <Input 
-                            type="password" 
-                            label="Password*" 
-                            name="password" 
-                            onChange={this.handleChange} 
-                            value={this.state.fields.password} 
+                        <Input
+                            type="password"
+                            label="Password*"
+                            name="password"
+                            onChange={this.handleChange}
+                            value={this.state.fields.password}
                         />
                         {this.state.errors ?
                             <p className="errorMsg">{this.state.errors.password}</p> :
                             null
                         }
                         <Button type="submit">Sign In</Button>
+                        {
+                            this.state.redirect ?
+                                <Redirect to="/home" /> :
+                                null
+                        }
                     </form>
                 </div>
             </div>
