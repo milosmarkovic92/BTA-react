@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Redirect} from 'react-router-dom';
 import Input from './FormDetails/Input';
 import Button from 'react-bootstrap/Button';
 import './Components.css';
@@ -8,7 +9,9 @@ export default class RegistrationForm extends Component {
     super();
     this.state = {
       fields: {},
-      errors: {}
+      errors: {},
+      redirect: false,
+      error: false
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -26,6 +29,8 @@ export default class RegistrationForm extends Component {
   }
 
   submitUserRegistrationForm(e) {
+    let storedEmail = localStorage.getItem('email');
+
     e.preventDefault();
     if (this.validateForm()) {
       let fields = {};
@@ -37,14 +42,27 @@ export default class RegistrationForm extends Component {
       this.setState({ fields: fields });
       localStorage.setItem('firstName', this.state.fields.firstName);
       localStorage.setItem('lastName', this.state.fields.lastName);
-      alert("Form submitted");
+      if(storedEmail !== this.state.fields.email) {
+        localStorage.setItem('email', this.state.fields.email);
+        this.setState({
+          redirect: true
+        })
+        alert("Form submitted");
+      }
+      // else {
+      //   this.setState({
+      //     error: true,
+      //     redirect: false
+      //   })
+      // }
+      
       console.log(this.state.fields);
     }
 
   }
 
   validateForm() {
-
+    let storedEmail = localStorage.getItem('email');
     let fields = this.state.fields;
     let errors = {};
     let formIsValid = true;
@@ -90,6 +108,11 @@ export default class RegistrationForm extends Component {
         formIsValid = false;
         errors["email"] = "*Please enter valid email.";
       }
+    }
+
+    if(storedEmail === this.state.fields.email) {
+      formIsValid = false;
+      errors["email"] = "*Email already taken.";
     }
 
     if (!fields["phone"]) {
@@ -213,6 +236,11 @@ export default class RegistrationForm extends Component {
               null
             }
             <Button type="submit">Sign Up</Button>
+            {
+              this.state.redirect ?
+                <Redirect to="/sign_in" /> :
+                null
+            }
           </form>
         </div>
       </div>
