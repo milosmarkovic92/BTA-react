@@ -1,41 +1,95 @@
 import React, { Component } from 'react';
 import CountriesData from '../../constants/countries.json';
 import CitiesData from '../../constants/cities.json'
+// import { thisExpression } from '@babel/types';
 export default class DiffCountriesTwo extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          selectedCountry: null,
-          cities:null
+          countries: [],
+          selectedCountry: [],
+          cities: []
         };
       }
+
+      componentDidMount() {
+        this.fetchCountryData();
+        // this.fetchCityData();
+      }
+
+      // fetchCityData = () => {
+      //   fetch('http://nationnebojsa-001-site1.gtempurl.com/api/cities/')
+      //       .then(response => console.log(response.json()))
+      //       // .then(parsedJSON => 
+      //       //     parsedJSON.map(item => ({
+      //       //       id: `${item.id}`,
+      //       //       countryId: `${item.countryId}`,
+      //       //       cityName: `${item.cityName}`
+      //       //     }))
+      //       //   )
+      //       // .then(result => (
+      //       //   this.setState({
+      //       //     cities: result
+      //       //   })
+      //       // ))
+      //       // .catch(error => console.log('Error message: ', error));
+      // }
+
+      fetchCountryData = () => {
+        fetch('http://nationnebojsa-001-site1.gtempurl.com/api/countries/')
+          .then(response => response.json())
+          .then(parsedJSON => 
+              parsedJSON.map(item => ({
+                id: `${item.id}`,
+                countryName: `${item.countryName}`,
+              }))
+            )
+            .then(result => (
+              this.setState({
+                countries: result
+              })
+            ))
+            .catch(error => console.log('Error message: ', error));
+      }
     
-      onChangeHandler = event => {
-
-        //ovde se uvoze 2 jsona i pakuju u state
-
-        const selectedCountry = CountriesData[event.target.value - 1];
-        const cities = CitiesData;
-
-        // fetch('https://jsonplaceholder.typicode.com/CitiesByCountry/' + event.target.value)
-        // .then(response => response.json())
-        // .then(parsedJSON => {
-
-        //     this.setState(
-        //         { trenutniUser: parsedJSON }
-        //     )
-
-        // })
-        this.setState({
-          selectedCountry:selectedCountry,
-          cities:cities
-        });
+      onChangeHandler = (e) => {
+        let citiesArray = [];
         
+        fetch('http://nationnebojsa-001-site1.gtempurl.com/api/countries/' + e.target.value)
+          .then(response => response.json())
+          .then(parsedJSON => {
+            this.setState({
+              selectedCountry: parsedJSON,
+            })
+          })
+          .catch(error => console.log('Error message: ', error));
+
+          if(e) {
+            fetch('http://nationnebojsa-001-site1.gtempurl.com/api/cities/')
+            .then(response => response.json())
+            .then(parsedJSON => 
+                parsedJSON.map(item => ({
+                  id: `${item.id}`,
+                  countryId: `${item.countryId}`,
+                  cityName: `${item.cityName}`
+                }))
+              )
+            .then(result => (
+              this.setState({
+                cities: result
+              })
+            ))
+            .then(console.log(this.state.cities))
+            .catch(error => console.log('Error message: ', error));
+            
+          }
       };
     
       render() {
-        console.log(this.state.cities);
-        const { selectedCountry } = this.state;
+        // console.log(this.state.cities);
+        const { countries } = this.state;
+        // console.log(this.state.selectedCountry);
+        // console.log("cities here: ",this.state.cities);
         return (
           <div>
             <select
@@ -46,14 +100,14 @@ export default class DiffCountriesTwo extends Component {
               <option disabled value="country">
                 Select country
               </option>
-              {CountriesData.map(({ id, country }) => (
+              {countries.map(({ id, countryName }) => (
                 <option key={id} value={id}>
-                  {country}
+                  {countryName}
                 </option>
               ))}
             </select>
     
-            {selectedCountry && (
+            {/* {selectedCountry && (
               <select name="city" defaultValue="city">
                 <option disabled value="city">
                   Select city
@@ -64,8 +118,21 @@ export default class DiffCountriesTwo extends Component {
                   </option>
                 ))}
               </select>
-            )}
+            )} */}
           </div>
         );
       }
 }
+
+// {contacts && (
+//   <select name="city" defaultValue="city">
+//     <option disabled value="city">
+//       Select city
+//     </option>
+//     {this.state.trenutniUser.map(item => (
+//       <option key={item.id} value={item.id}>
+//         {item.cityName}
+//       </option>
+//     ))}
+//   </select>
+// )}
