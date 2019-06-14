@@ -10,12 +10,14 @@ export default class NavbarMenu extends Component {
         return (
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 {/* ako je user logovan, prikazi mi link u navigaciji */}
-                    <NavLink 
-                        activeClassName={"active"} 
-                        exact to="/" 
+                {isLoggedIn && (
+                    <NavLink
+                        activeClassName={"active"}
+                        exact to="/"
                         className="ml-3 logo font-weight-bold mt-n1 mr-5">
-                            BTA
+                        BTA
                     </NavLink>
+                )}
                 {/* ako je user logovan, prikazi mi link u navigaciji */}
                 {isLoggedIn && (
                     <Navbar.Toggle aria-controls="responsive-navbar-nav">
@@ -47,7 +49,7 @@ export default class NavbarMenu extends Component {
                     )}
                     {/* ako user nije logovan, prikazi mi link u navigaciji */}
                     {!isLoggedIn && (
-                        <Nav className="mr-3">
+                        <Nav className={!isLoggedIn ? "d-flex justify-content-center w-100" : "mr-3"}>
                             <NavLink className="pr-md-2 pr-lg-3 pr-xl-4" to="/sign_up">Sign Up</NavLink>
                             <NavLink className="pl-lg-3 pl-xl-4" to="/sign_in">Sign In</NavLink>
                         </Nav>

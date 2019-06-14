@@ -1,0 +1,21 @@
+.footerWrapper {
+    background-color: darkslategrey;
+}
+
+.linkIcons {
+    font-size: 1.8rem;
+    color: aliceblue;
+}
+
+.linkText {
+    font-size: 1rem;
+    color: aliceblue;
+}
+
+.linkText:hover, .linkIcons:hover{
+    color: rgb(195, 208, 219);
+}
+
+.copyRightText {
+    color: rgb(190, 208, 224)
+}

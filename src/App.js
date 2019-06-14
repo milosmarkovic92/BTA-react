@@ -5,8 +5,7 @@ import LoginForm from './components/LoginForm';
 import NavbarMenu from './components/Navbar/NavbarMenu';
 import Footer from './components/FooterMenu/Footer';
 import Home from './components/Navbar/NavbarItems/Home';
-// import DiffCountries from './components/Navbar/NavbarItems/DiffCountries';
-import DiffCountriesTwo from './components/Navbar/NavbarItems/DiffCountriesTwo';
+import DiffCountries from './components/Navbar/NavbarItems/DiffCountries';
 import Accommodation from './components/Navbar/NavbarItems/Accommodation';
 import EnjoyTravel from './components/Navbar/NavbarItems/EnjoyTravel';
 import Feedbacks from './components/Navbar/NavbarItems/Feedbacks';
@@ -69,7 +68,7 @@ export default class App extends Component {
               <Redirect to={'/sign_in'} />}
             />
             <Route path="/different_countries" component={() => isLoggedIn ?
-              <DiffCountriesTwo /> :
+              <DiffCountries /> :
               <Redirect to={'/sign_in'} />}
             />
             <Route path="/accommodation" component={() => isLoggedIn ?
