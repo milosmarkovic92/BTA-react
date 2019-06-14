@@ -3,9 +3,10 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import RegistrationForm from './components/RegistrationForm';
 import LoginForm from './components/LoginForm';
 import NavbarMenu from './components/Navbar/NavbarMenu';
+import Footer from './components/FooterMenu/Footer';
 import Home from './components/Navbar/NavbarItems/Home';
-import DiffCountries from './components/Navbar/NavbarItems/DiffCountries';
-// import DiffCountriesTwo from './components/Navbar/NavbarItems/DiffCountriesTwo';
+// import DiffCountries from './components/Navbar/NavbarItems/DiffCountries';
+import DiffCountriesTwo from './components/Navbar/NavbarItems/DiffCountriesTwo';
 import Accommodation from './components/Navbar/NavbarItems/Accommodation';
 import EnjoyTravel from './components/Navbar/NavbarItems/EnjoyTravel';
 import Feedbacks from './components/Navbar/NavbarItems/Feedbacks';
@@ -62,15 +63,15 @@ export default class App extends Component {
         <NavbarMenu isLoggedIn={isLoggedIn} logedUser={this.state.userName} logout={this.handleLogout}/>
         <div className="App">
           <Switch>
+            {/* zastita ruta od neregistrovanog korisnika */}
             <Route exact path="/" component={() => isLoggedIn ?
               <Home /> :
               <Redirect to={'/sign_in'} />}
             />
             <Route path="/different_countries" component={() => isLoggedIn ?
-              <DiffCountries /> :
+              <DiffCountriesTwo /> :
               <Redirect to={'/sign_in'} />}
             />
-            {/* <Route path="/different_countries" component={DiffCountriesTwo} /> */}
             <Route path="/accommodation" component={() => isLoggedIn ?
               <Accommodation /> :
               <Redirect to={'/sign_in'} />}
@@ -92,6 +93,7 @@ export default class App extends Component {
             <Route component={NotFound} />
           </Switch>
         </div>
+        <Footer isLoggedIn={isLoggedIn} logedUser={this.state.userName} logout={this.handleLogout}/>
       </Fragment>
     );
   }
